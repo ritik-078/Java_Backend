@@ -1,0 +1,300 @@
+- **Primitive:** int, float, double, char, boolean, byte, short, long.
+- **Reference:** Objects, arrays.
+
+### Java Data Types Table
+
+| Data Type | Size (bits) | Size (bytes) | Default Value | Range (Formula) |
+|-----------|-------------|--------------|---------------|-----------------|
+| byte      | 8           | 1            | 0             | -2⁷ to 2⁷-1 |
+| short     | 16          | 2            | 0             | -2¹⁵ to 2¹⁵-1 |
+| int       | 32          | 4            | 0             | -2³¹ to 2³¹-1 |
+| long      | 64          | 8            | 0L            | -2⁶³ to 2⁶³-1 |
+| float     | 32          | 4            | 0.0f          | ±(1.4 × 10⁻⁴⁵) to ±(3.4 × 10³⁸) |
+| double    | 64          | 8            | 0.0d          | ±(4.9 × 10⁻³²⁴) to ±(1.7 × 10³⁰⁸) |
+| char      | 16          | 2            | '\u0000'      | 0 to 2¹⁶-1 (Unicode) |
+| boolean   | 1 (JVM)     | JVM          | false        | true or false |
+
+
+### Type Conversion & Typecasting
+- **Type Conversion (Implicit):** Automatic conversion by Java (e.g., int to double).
+- **Typecasting (Explicit):** Manual conversion by programmer (e.g., double to int: `(int) value`).
+- Used to convert between compatible data types.
+- May cause data loss (e.g., casting double to int).
+- Example:
+    ```java
+    int a = 10;
+    double b = a; // implicit conversion
+    double c = 9.7;
+    int d = (int) c; // explicit typecasting, d = 9
+    ```
+
+
+//static variable is shared among all instances of the class
+    //it is not tied to any specific instance, can be called by class reference
+
+    // static method can access only static data
+    // static block is used to initialize static variables
+    // called when class is loaded by classloader
+    // static
+    // {
+    //     population=100;
+    // }
+
+    // instance variable is tied to specific instance of the class, can't be called 
+    // by class reference or static method
+    // to use instance variable in a static method, we need to create an instance of the 
+    // class and pass it to the static method
+
+
+
+// Notes about constructors:
+    // 1. Constructors are special methods used to initialize objects.
+    // 2. They have the same name as the class and no return type.
+    // 3. Multiple constructors can be defined (constructor overloading).
+    // 4. The 'this' keyword can be used to refer to the current object or to call another constructor.
+    // 5. Copy constructors can be used to create a new object from an existing object.
+
+
+
+//        Box cube = new Box(6);
+//        Box cuboid = new Box(1,2,3);
+//        cuboid.show();
+
+//        Cube c = new Cube(6);
+//        Cube c2 = new Cube(c);
+//        System.out.println(c2 + ", Area:" + c2.getArea() + ", Volume:" + c2.getVolume());
+
+        // Parent class object can be initialized with child class constructor
+//        Box b1 = new Cube(2);
+//        System.out.println(b1);
+
+        //Can't initialize child object with parent class constructor, as variables in
+        //child class can't be initialized as parent object can't access child class
+        //components
+        //Cube c1 = new Box(2);
+
+
+        // Multi-Level Inheritance
+//        PackageBox p1 = new PackageBox(5,true);
+//        System.out.println(p1);
+//        p1.showBox();
+//        p1.showPackageBox();
+
+        // Every class in java extends Object class by default
+        // Object class is the parent class of all classes in java
+        // Object class has some methods which can be overridden in child class
+        // toString(), equals(), hashCode(), getClass(), clone(), finalize()
+
+        // super() keyword
+        // super() is used to call parent class constructor from child class constructor
+        // super() should be the first line in child class constructor
+
+        // multiple inheritance is not supported in java because of ambiguity
+        // if a class inherits from two classes which have a method with same name
+        // then which method will be called when we call that method from child class
+        // to solve this problem, java provides interface
+        // interface is a blueprint of a class, it has static constants and abstract methods
+        // a class can implement multiple interfaces    
+        // interface is implemented using implements keyword
+
+        // method overriding
+        // when a method in child class has same name and parameters as a method in parent class
+        // then the method in child class is said to override the method in parent class
+        // to override a method, the method in child class should have same name, parameters and
+        // return type as the method in parent class
+        // @Override annotation is used to indicate that a method is overriding a method in parent class
+        // if we want to call the method in parent class from child class, we can use super keyword
+        // super.methodName()
+
+// in a file you can have only one public class
+
+
+// child class object created by parent class reference, here what it can access is
+        //defined by reference(i.e parent class), but which version of the  function will be
+        // called will be determined by object type(i.e. child class), known as Upcasting
+        // parent class need to have the function defined so that it can access it
+        Shapes c2 = new Circle();
+        // Dynamic method dispatch determines which function to call at runtime
+
+
+        // Early Binding : When a function is declared final in parent class, it can't be
+        // over-ride and call to it can be resolved at compile time only
+
+        // Late Binding : Function overriding when call to a function is resolved at run-time
+
+        // Static -> independent of objects whereas Overriding -> depends on objects
+        // Static methods can't be over-ride, call to static is object independent, always
+        // calls base class static method
+
+        // two types of polymorphism
+        // 1. Compile time polymorphism : method overloading, operator overloading
+        // 2. Run time polymorphism : method overriding
+        
+        // dynamic method dispatch
+        // when a parent class reference is used to refer to a child class object
+        // method to be called is determined at runtime by the object type
+        // method to be accessed is determined at compile time by the reference type
+
+
+//final keyword
+        // final variable : constant variable, value can't be changed
+        // final method : can't be overridden
+        // final class : can't be inherited
+        // finalize() method : called by garbage collector before destroying the object
+
+
+ // Upcasting and Downcasting
+        // Upcasting: when a parent class reference is used to refer to a child class object
+        // Downcasting: when a child class reference is used to refer to a parent class object
+        // Downcasting is not allowed in java, it will give compile time error
+        // Downcasting can be done using type casting, but it will give runtime error
+        // if the object is not of the type of the child class
+
+
+// Abstraction is the process of hiding the implementation details and showing only the functionality to the user
+    // Abstraction can be achieved using abstract classes and interfaces
+    // Abstract class is a class which is declared with abstract keyword
+    // Abstract class can have abstract and non-abstract methods
+    // Abstract method is a method which is declared without any implementation
+    // Abstract class can't be instantiated, but can be inherited
+    // If a class has at least one abstract method, then the class must be declared as abstract
+    // If a class is inheriting an abstract class, then it must implement all the abstract methods of the parent class
+    // Interface is a blueprint of a class, it has static constants and abstract methods
+    // A class can implement multiple interfaces
+    // Interface is implemented using implements keyword 
+    // By default, all the methods in an interface are abstract and public
+    // From Java 8, interface can have default and static methods with implementation
+
+
+// Abstract class vs Interface
+        // 1. Abstract class can have abstract and non-abstract methods, whereas interface can
+        // have only abstract methods (default and static methods from Java 8)
+        // 2. A class can inherit only one abstract class, but can implement multiple interfaces
+        // 3. Abstract class can have constructors, whereas interface can't have constructors
+        // 4. Abstract class can have instance variables, whereas interface can have only static and
+        // final variables
+        // 5. Abstract class can have access modifiers for methods and variables, whereas all the
+        // methods and variables in an interface are public by default
+
+
+// Nested classes can be used to logically group classes that are only used in one place
+        // It increases encapsulation
+        // It can lead to more readable and maintainable code
+        // Types of nested classes:
+        // 1. Static nested class
+        // 2. Inner class (non-static)
+        // 3. Local class (defined within a method)
+        // 4. Anonymous class (defined and instantiated in a single expression)
+
+    
+
+//Anonymous class
+        // an anonymous class is a class that is defined and instantiated in a single 
+        // expression, it is used to override a method of a class or an interface
+        // it is useful when you have a class that you want to use only once and don't want to
+        // create a separate class for it
+
+
+
+//When one interface extend another interface and we implement interface(that
+    // extends another interface), we have to define the methods in the both the
+    // interfaces
+    // all methods in interface are by default public and abstract
+    // all variables in interface are by default public, static and final
+    // final variables need to be initialized at the time of declaration only  
+    // static method in interface can be called using interface name
+    // static methods in interface can't be overridden in implementing class
+    // default methods in interface can be overridden in implementing class
+    // need for interface is to achieve multiple inheritance in java
+    // interface is a blueprint of a class, it has static constants and abstract methods
+
+// Functional Interface  
+ // A functional interface is an interface that contains only one abstract method
+ // It can have multiple default and static methods
+ // purpose of functional interface is to provide a target type for lambda expressions and method references
+ // can be annotated with @FunctionalInterface annotation
+
+
+
+/*
+
+ * 1. Loose Coupling:
+ *    - Loose coupling means classes are independent of each other's concrete implementations.
+ *    - In this example, NiceCar depends on the Engine interface, not a specific engine type.
+ *    - This allows changing the engine at runtime, making the design flexible and extensible.
+ *
+ * 2. Interface Usage:
+ *    - The Engine interface defines the contract for engine behavior.
+ *    - PowerEngine and ElectricEngine implement Engine, providing different behaviors.
+ *    - NiceCar can work with any Engine implementation, promoting abstraction.
+ *
+ * 3. Benefits:
+ *    - Easier to maintain and extend code.
+ *    - New engine types can be added without modifying NiceCar.
+ *    - Demonstrates the power of interfaces in Java OOP.
+ 
+
+
+Enums are special classes that represent a group of constants
+enum Status{
+    NEW, IN_PROGRESS, COMPLETED, CLOSED
+}
+
+
+// Types of interfaces
+// 1. Marker Interface: An interface with no methods, used to mark a class for a specific purpose
+just to mark the class so that it can have specific special features
+// 2. Functional Interface: An interface with a single abstract method, used for lambda expressions
+// 3. Normal Interface: An interface with multiple abstract methods
+
+
+
+// Throwable -> Error and Exception
+        // Exception -> Checked and Unchecked Exception
+        // Checked Exception : ClassNotFoundException, IOException
+        // Unchecked Exception : ArithmeticException, NullPointerException, ArrayIndexOutOfBoundsException
+        // Exception is a condition that occurs during the execution of a program that disrupts the normal
+        // flow of instructions
+        // Error is a serious problem that a reasonable application should not try to catch
+        // try-catch block is used to handle exceptions
+        // throw keyword is used to throw an exception explicitly
+        // throws keyword is used to declare an exception
+        // custom exception can be created by extending Exception class
+        // finally block is used to execute the code that must be executed whether an exception
+        // occurs or not
+        // multiple catch blocks can be used to handle different types of exceptions
+        // try-with-resources is used to close the resources automatically
+        // Java 7 introduced multi-catch block to catch multiple exceptions in a single catch block
+        
+
+
+// Difference between Thread class and Runnable interface
+        // 1. Java supports only single inheritance, so if we extend Thread class, we can't extend any other class
+        //    But if we implement Runnable interface, we can extend another class as well
+        // 2. When we extend Thread class, we can't share the same object between multiple threads
+        //    But when we implement Runnable interface, we can share the same object between multiple threads
+        // 3. Runnable interface is more efficient than Thread class, as it doesn't require the overhead of creating a new thread object
+        // 4. Runnable interface is preferred when we want to separate the task from the thread that executes it
+        // 5. Runnable interface is preferred when we want to implement multiple inheritance
+
+        // Threads in Java can be in one of the following states:
+        // 1. New: when a thread is created but not yet started
+        // 2. Runnable: when a thread is ready to run and waiting for CPU time
+        // 3. Running: when a thread is executing
+        // 4. Blocked: when a thread is waiting for a resource that is not available
+        // 5. Waiting: when a thread is waiting indefinitely for another thread to perform a particular action
+        // 6. Timed Waiting: when a thread is waiting for another thread to perform a particular action for a specified amount of time
+        // 7. Terminated: when a thread has completed its execution
+
+        // Multi-threading is a process of executing multiple threads simultaneously
+        // Multi-threading is used to achieve parallelism and improve the performance of a program
+        // Multi-threading is also used to achieve concurrency, where multiple threads can access shared resources
+        // Synchronization is used to control the access of multiple threads to shared resources
+        // Synchronization is achieved using synchronized keyword, which can be used to synchronize a method or a block of code
+        // Synchronized method to ensure only one thread can access at a time
+            // if we not use synchronized keyword, the final count value will be less than 2000
+            // because multiple threads will access the increment method simultaneously
+
+
+// comparable - to give power to the class to handle comparision
+// comparator - to define to the comparision logic outside the class
