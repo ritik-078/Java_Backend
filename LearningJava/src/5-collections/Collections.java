@@ -19,7 +19,18 @@ public class Collections {
         demonstratePriorityQueue();
     }
 
-    // ARRAYLIST - Dynamic array, O(1) amortized append, O(n) insert/delete
+    /* ARRAYLIST - Dynamic array, O(1) amortized append, O(n) insert/delete
+     * INTERNAL WORKING:
+     * 1. Backed by Object[] array, default capacity 10
+     * 2. When full, creates new array 1.5x size and copies elements
+     * 3. Random access via index calculation: array[index]
+     * 4. Insert/delete shifts elements: System.arraycopy()
+     * USE CASES:
+     * - Frequent random access by index
+     * - Iteration over elements
+     * - Rare insertions/deletions in middle
+     * - Building lists with unknown size
+     */
     public static void demonstrateArrayList() {
         System.out.println("\n=== ARRAYLIST ===");
         List<Integer> list = new ArrayList<>();
@@ -68,7 +79,18 @@ public class Collections {
         System.out.println(arr);
     }
 
-    // LINKEDLIST - Doubly linked list, O(1) add/remove at ends, O(n) random access
+    /* LINKEDLIST - Doubly linked list, O(1) add/remove at ends, O(n) random access
+     * INTERNAL WORKING:
+     * 1. Each node has: data, next pointer, prev pointer
+     * 2. Maintains first and last node references
+     * 3. Traversal required for index access: O(n/2) optimized
+     * 4. No resizing needed, allocates per node
+     * USE CASES:
+     * - Frequent insertions/deletions at ends (queue/deque)
+     * - Implementing stacks, queues
+     * - When memory fragmentation is acceptable
+     * - Rare random access needed
+     */
     public static void demonstrateLinkedList() {
         System.out.println("\n=== LINKEDLIST ===");
         LinkedList<String> list = new LinkedList<>();
@@ -109,7 +131,16 @@ public class Collections {
         System.out.println("Size: " + list.size());
     }
 
-    // VECTOR - Legacy Class, synchronized dynamic array, O(1) amortized append, O(n) insert/delete
+    /* VECTOR - Legacy Class, synchronized dynamic array, O(1) amortized append, O(n) insert/delete
+     * INTERNAL WORKING:
+     * 1. Same as ArrayList but all methods synchronized
+     * 2. Doubles capacity when full (vs 1.5x for ArrayList)
+     * 3. Thread-safe but slower due to synchronization overhead
+     * USE CASES:
+     * - Legacy code compatibility
+     * - Simple thread-safe list (prefer CopyOnWriteArrayList or Collections.synchronizedList)
+     * - Generally avoid in new code
+     */
     public static void demonstrateVector() {
         System.out.println("\n=== VECTOR (Legacy) ===");
         Vector<Integer> vector = new Vector<>();
@@ -144,7 +175,16 @@ public class Collections {
         System.out.println("First: " + vector.firstElement() + ", Last: " + vector.lastElement());
     }
 
-    // STACK - Legacy Class, extends Vector, LIFO, O(1) push/pop/peek
+    /* STACK - Legacy Class, extends Vector, LIFO, O(1) push/pop/peek
+     * INTERNAL WORKING:
+     * 1. Extends Vector, inherits synchronized array
+     * 2. Push adds to end, pop removes from end
+     * 3. All operations synchronized (thread-safe but slow)
+     * USE CASES:
+     * - Legacy code only
+     * - Prefer Deque<Integer> stack = new ArrayDeque<>() for new code
+     * - Expression evaluation, backtracking, undo operations
+     */
     public static void demonstrateStackLegacy() {
         System.out.println("\n=== STACK (Legacy) ===");
         Stack<Integer> stack = new Stack<>();
@@ -169,7 +209,18 @@ public class Collections {
         System.out.println("Size: " + stack.size() + ", Empty: " + stack.isEmpty());
     }
 
-    // COPYONWRITEARRAYLIST - Thread-safe, O(n) write, O(1) read, creates copy on modification
+    /* COPYONWRITEARRAYLIST - Thread-safe, O(n) write, O(1) read, creates copy on modification
+     * INTERNAL WORKING:
+     * 1. Backed by volatile Object[] array
+     * 2. Every write creates new array copy with modification
+     * 3. Reads don't need synchronization (lock-free)
+     * 4. Iterator uses snapshot of array at creation time
+     * USE CASES:
+     * - Read-heavy, write-rare scenarios
+     * - Event listener lists
+     * - Observer pattern implementations
+     * - Concurrent iteration without ConcurrentModificationException
+     */
     public static void demonstrateCopyOnWriteArrayList() {
         System.out.println("\n=== COPYONWRITEARRAYLIST ===");
         CopyOnWriteArrayList<Integer> list = new CopyOnWriteArrayList<>();
@@ -832,10 +883,6 @@ public class Collections {
         // Size and isEmpty - O(1)
         System.out.println("Size: " + minHeap.size() + ", Empty: " + minHeap.isEmpty());
     }
-
-
-
-
 }
 
 
