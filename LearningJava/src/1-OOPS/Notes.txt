@@ -1,0 +1,11 @@
+Machine Coding -> 0&1
+Assembly Coding -> String Literals as instructions
+Procedural Programming -> Loops, if/else, switch, variables
+Object Oriented Programming -> Objects(real world analogy)
+
+
+
+Abstraction -> hiding complexity from the user
+Abstraction = Hiding Complexity + Showing Essentials
+Encapsulation -> restricts user to access sensitive data (Data security - access modifiers) 
+Encapsulation = Data hiding + Controlled access
